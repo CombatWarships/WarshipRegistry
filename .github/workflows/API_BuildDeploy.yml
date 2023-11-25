@@ -1,0 +1,13 @@
+name: API Build & Deploy
+on:
+  workflow_dispatch:
+  push:
+    branches: [ master ]
+    paths: ['WarshipRegistryAPI/**']
+
+jobs:
+  Build: 
+    uses: CombatWarships/DevOps/.github/workflows/Nuget.yml@main
+    with:
+      CSPROJ_PATH: WarshipRegistryAPI/WarshipRegistryAPI.csproj
+      RELEASE_DIR: WarshipRegistryAPI/bin/Release/
