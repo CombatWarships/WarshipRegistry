@@ -8,6 +8,7 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
 COPY ["WarshipService/WarshipService.csproj", "WarshipService/"]
+RUN dotnet nuget add source "https://nuget.pkg.github.com/CombatWarships/index.json" --name WarshipPackages --username __USERNAME__ --password __TOKEN__ --store-password-in-clear-text
 RUN dotnet restore "WarshipService/WarshipService.csproj"
 COPY . .
 WORKDIR "/src/WarshipService"
