@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+
+		<PackageId>CombatWarships.WarshipRegistry.API</PackageId>
+		<Version>1.0.0</Version>
+		<Authors>Justin</Authors>
+		<Company>CombatWarships</Company>
+		<PackageDescription>WarshipRegistry API</PackageDescription>
+		<RepositoryUrl>https://github.com/CombatWarships/WarshipRegistry</RepositoryUrl>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="CombatWarships.ServiceBus.Core" Version="0.1.3" />
+		<PackageReference Include="CombatWarships.ShipDomain" Version="0.1.1" />
+	</ItemGroup>
+
+</Project>
