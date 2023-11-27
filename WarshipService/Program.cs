@@ -20,16 +20,6 @@ var builder = WebApplication.CreateBuilder(args);
 Log.Information("Builder created");
 
 
-TokenCredential keyvaultCredential = new DefaultAzureCredential();
-
-if (builder.Environment.IsDevelopment())
-{
-	keyvaultCredential = new ClientSecretCredential(builder.Configuration["tenantID"], builder.Configuration["clientID"], builder.Configuration["clientSecret"]);
-}
-
-var url = $"https://{builder.Configuration["KeyVaultName"]}.vault.azure.net/";
-builder.Configuration.AddAzureKeyVault(new Uri(url), keyvaultCredential);
-
 var appInsightsConnection = builder.Configuration.GetConnectionString("AppInsights");
 if (string.IsNullOrEmpty(appInsightsConnection))
 	Log.Error("Application Insights Connection is NULL");
@@ -43,6 +33,21 @@ Log.Logger = new LoggerConfiguration()
 
 builder.Logging.AddSerilog(Log.Logger);
 Log.Information("Application started & Logger attached");
+
+
+
+
+
+TokenCredential keyvaultCredential = new DefaultAzureCredential();
+
+//if (builder.Environment.IsDevelopment())
+//{
+//	keyvaultCredential = new ClientSecretCredential(builder.Configuration["tenantID"], builder.Configuration["clientID"], builder.Configuration["clientSecret"]);
+//}
+
+var url = $"https://{builder.Configuration["KeyVaultName"]}.vault.azure.net/";
+builder.Configuration.AddAzureKeyVault(new Uri(url), keyvaultCredential);
+
 
 var connectionString = builder.Configuration["DBConnection"];
 if (string.IsNullOrEmpty(connectionString))
