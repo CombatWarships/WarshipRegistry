@@ -20,7 +20,7 @@ namespace Warships.Databases
 
       protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
       {
-         var connectionString = _configuration.GetConnectionString("DBConnection");
+         var connectionString = _configuration["DBConnection"];
          if (string.IsNullOrEmpty(connectionString))
          {
             Log.Error($"Database connection string is NULL");

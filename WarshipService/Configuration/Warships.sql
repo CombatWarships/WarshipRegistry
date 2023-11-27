@@ -5,8 +5,8 @@ WAITFOR DELAY '00:00:01' --One seconds
 CREATE TABLE Ships (
     ID uniqueIdentifier NOT NULL PRIMARY KEY,
 
-    Nation varchar(255) NOT NULL,
-    ClassName varchar(255) NOT NULL,
+    Nation varchar(255),
+    ClassName varchar(255),
 
     ClassType varchar(255),
     NumberInClass int,
