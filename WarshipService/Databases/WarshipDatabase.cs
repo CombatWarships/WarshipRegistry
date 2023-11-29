@@ -88,47 +88,47 @@ namespace Warships.Databases
 			IQueryable<Ship> linq = Ships;
 
 			if (!string.IsNullOrEmpty(query.ClassName))
-				linq = linq.Where(s => s.ClassName == null || s.ClassName.Contains(query.ClassName));
+				linq = linq.Where(s => s.ClassName != null && s.ClassName.Contains(query.ClassName));
 
 			if (!string.IsNullOrEmpty(query.Nation))
-				linq = linq.Where(s => s.Nation == null || s.Nation.Contains(query.Nation));
+				linq = linq.Where(s => s.Nation != null && s.Nation.Contains(query.Nation));
 
 			if (query.MinUnits != null)
-				linq = linq.Where(s => s.Units == null || s.Units >= query.MinUnits);
+				linq = linq.Where(s => s.Units >= query.MinUnits);
 
 			if (query.MaxUnits != null)
-				linq = linq.Where(s => s.Units == null || s.Units <= query.MaxUnits);
+				linq = linq.Where(s => s.Units <= query.MaxUnits);
 
 
 			if (query.MinSpeedIrcwcc != null)
-				linq = linq.Where(s => s.SpeedIrcwcc == null || s.SpeedIrcwcc >= query.MinSpeedIrcwcc);
+				linq = linq.Where(s => s.SpeedIrcwcc >= query.MinSpeedIrcwcc);
 
 			if (query.MaxSpeedIrcwcc != null)
-				linq = linq.Where(s => s.SpeedIrcwcc == null || s.SpeedIrcwcc <= query.MaxSpeedIrcwcc);
+				linq = linq.Where(s => s.SpeedIrcwcc <= query.MaxSpeedIrcwcc);
 
 
 			if (query.MinSpeedKnots != null)
-				linq = linq.Where(s => s.SpeedKnots == null || s.SpeedKnots >= query.MinSpeedKnots);
+				linq = linq.Where(s =>  s.SpeedKnots >= query.MinSpeedKnots);
 
 			if (query.MaxSpeedKnots != null)
-				linq = linq.Where(s => s.SpeedKnots == null || s.SpeedKnots <= query.MaxSpeedKnots);
+				linq = linq.Where(s => s.SpeedKnots <= query.MaxSpeedKnots);
 
 
 			if (query.MinLength != null)
-				linq = linq.Where(s => s.LengthFt == null || s.LengthFt >= query.MinLength);
+				linq = linq.Where(s => s.LengthFt >= query.MinLength);
 
 			if (query.MaxLength != null)
-				linq = linq.Where(s => s.LengthFt == null || s.LengthFt <= query.MaxLength);
+				linq = linq.Where(s => s.LengthFt <= query.MaxLength);
 
 
 			if (query.MinBeam != null)
-				linq = linq.Where(s => s.BeamFt == null || s.BeamFt >= query.MinBeam);
+				linq = linq.Where(s => s.BeamFt >= query.MinBeam);
 
 			if (query.MaxBeam != null)
-				linq = linq.Where(s => s.BeamFt == null || s.BeamFt <= query.MaxBeam);
+				linq = linq.Where(s => s.BeamFt <= query.MaxBeam);
 
 			if (query.ShiplistKey != null)
-				linq = linq.Where(s => s.ShiplistKey == null || s.ShiplistKey == query.ShiplistKey);
+				linq = linq.Where(s => s.ShiplistKey == query.ShiplistKey);
 
 			if (query.Skip != null)
 				linq = linq.Skip(query.Skip.Value);

@@ -10,6 +10,7 @@ using Warships.Databases;
 using Warships.Interfaces;
 using WarshipSearchAPI.Interfaces;
 using WarshipSearchAPI.Middleware;
+using WarshipService.Processors;
 
 Log.Logger = new LoggerConfiguration()
 		 .WriteTo.Console()
@@ -57,6 +58,7 @@ if (string.IsNullOrEmpty(connectionString))
 // Add services to the container.
 builder.Services.AddSingleton<INationalityDB, NationalityDB>();
 builder.Services.AddSingleton<IWarshipClassificationDB, WarshipClassificationDB>();
+builder.Services.AddSingleton<IQueryRangeProcessor, QueryRangeProcessor>();
 builder.Services.AddScoped<IWarshipDatabase, WarshipDatabase>();
 
 builder.Services.AddSingleton<IMessageProcessor, AddOrUpdateShipProcessor>();

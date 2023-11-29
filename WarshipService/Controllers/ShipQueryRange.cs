@@ -1,44 +1,29 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Serilog.Context;
+﻿using Microsoft.AspNetCore.Mvc;
 using Serilog;
 using WarshipSearchAPI.DTO;
-using WarshipSearchAPI.Interfaces;
+using WarshipService.Processors;
 
 namespace WarshipSearchAPI.Controllers
 {
-    [Route("api/[controller]")]
+	[Route("api/[controller]")]
 	[ApiController]
 	public class ShipQueryRange : ControllerBase
 	{
-		//private readonly IWarshipDatabase _database;
+		private readonly IQueryRangeProcessor _queryRangeProcessor;
 
-		public ShipQueryRange()//IWarshipDatabase database)
+		public ShipQueryRange(IQueryRangeProcessor queryRangeProcessor)
 		{
-		//	_database = database;
+			_queryRangeProcessor = queryRangeProcessor;
 		}
 
 		[HttpGet(Name = "GetRanges")]
-		public QueryRange Get()
+		public async Task<QueryRange> Get()
 		{
 			Log.Information("Get Range Information");
-			//var result = _database.Query(query);
-			//Log.Information($"{result.Count()} results were found.");
+
+			return await _queryRangeProcessor.GetRange();
 
 			// TODO: Send through automapper
-			return new QueryRange
-			{
-				MinUnits = 1,
-				MaxUnits = 8,
-				MinSpeedIrcwcc = 23,
-				MaxSpeedIrcwcc = 34,
-				MinSpeedKnots = 22,
-				MaxSpeedKnots = 50,
-				MinLength = 100,
-				MaxLength = 900,
-				MinBeam = 20,
-				MaxBeam = 150
-			};
 		}
 	}
 }

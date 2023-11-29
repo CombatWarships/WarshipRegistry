@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 using Serilog;
 using Serilog.Context;
 using ShipDomain;
@@ -6,6 +7,7 @@ using System.Text.Json;
 using WarshipRegistryAPI.Warships;
 using WarshipSearchAPI.DTO;
 using WarshipSearchAPI.Interfaces;
+using WarshipService.Processors;
 
 namespace WarshipSearchAPI.Controllers
 {
@@ -14,10 +16,12 @@ namespace WarshipSearchAPI.Controllers
 	public class SearchWarshipsController : ControllerBase
 	{
 		private readonly IWarshipDatabase _database;
+		private readonly IQueryRangeProcessor _queryRangeProcessor;
 
-		public SearchWarshipsController(IWarshipDatabase database)
+		public SearchWarshipsController(IWarshipDatabase database, IQueryRangeProcessor queryRangeProcessor)
 		{
 			_database = database;
+			_queryRangeProcessor = queryRangeProcessor;
 		}
 
 		[HttpPost(Name = "Search")]
@@ -27,6 +31,11 @@ namespace WarshipSearchAPI.Controllers
 			using (LogContext.PushProperty("Query", jsonString))
 			{
 				Log.Information("Search Request");
+
+				query = _queryRangeProcessor.RemoveFullRangeQueryConstraints(query);
+
+				Log.Information("Removed full range values from query");
+
 				
 				var result = await _database.Query(query);
 
@@ -36,5 +45,6 @@ namespace WarshipSearchAPI.Controllers
 				return result;
 			}
 		}
+
 	}
 }
