@@ -26,8 +26,14 @@ namespace WarshipSearchAPI.DTO
 		public int? MinBeam { get; set; }
 		public int? MaxBeam { get; set; }
 
+		public int? MinRudders { get; set; }
+		public int? MaxRudders { get; set; }
+		public int? MinShafts{ get; set; }
+		public int? MaxShafts { get; set; }
+
+
+		public int? ShiplistKey { get; set; }
 		public int? Skip { get; set; }
 		public int? Take { get; set; } = 25;
-		public int? ShiplistKey { get; internal set; }
 	}
 }

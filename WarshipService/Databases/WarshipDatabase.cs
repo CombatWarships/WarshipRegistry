@@ -127,6 +127,21 @@ namespace Warships.Databases
 			if (query.MaxBeam != null)
 				linq = linq.Where(s => s.BeamFt <= query.MaxBeam);
 
+
+			if (query.MinRudders != null)
+				linq = linq.Where(s => s.Rudders >= query.MinRudders);
+
+			if (query.MaxRudders != null)
+				linq = linq.Where(s => s.Shafts <= query.MaxRudders);
+
+
+			if (query.MinShafts != null)
+				linq = linq.Where(s => s.Shafts >= query.MinShafts);
+
+			if (query.MaxShafts != null)
+				linq = linq.Where(s => s.Shafts <= query.MaxShafts);
+
+
 			if (query.ShiplistKey != null)
 				linq = linq.Where(s => s.ShiplistKey == query.ShiplistKey);
 

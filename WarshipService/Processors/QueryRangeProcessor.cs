@@ -16,7 +16,11 @@ namespace WarshipService.Processors
 			MinLength = 100,
 			MaxLength = 900,
 			MinBeam = 20,
-			MaxBeam = 150
+			MaxBeam = 150,
+			MinRudders = 1,
+			MaxRudders = 2,
+			MinShafts = 1,
+			MaxShafts = 4,
 		};
 		private readonly PropertyInfo[] _shipQueryProps;
 		private readonly PropertyInfo[] _queryRangeProps;

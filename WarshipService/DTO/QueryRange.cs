@@ -18,5 +18,10 @@
 
 		public int? MinBeam { get; set; }
 		public int? MaxBeam { get; set; }
+
+		public int? MinRudders { get; set; }
+		public int? MaxRudders { get; set; }
+		public int? MinShafts { get; set; }
+		public int? MaxShafts { get; set; }
 	}
 }
